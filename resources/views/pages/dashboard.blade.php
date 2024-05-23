@@ -127,7 +127,7 @@
                         <div class="card-body">
                             <div style="max-height: 600px; overflow-y: auto;">
                                 <ul class="list-unstyled list-unstyled-border ">
-                                    @foreach ($users as $user)
+                                    @foreach ($users->reverse() as $user)
                                         <li class="media">
                                             <img class="rounded-circle mr-3" width="50"
                                                 src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
@@ -221,7 +221,6 @@
                                         aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
-
                             <div class="mb-4">
                                 <div class="text-small font-weight-bold text-muted float-right">1,521</div>
                                 <div class="font-weight-bold mb-1">Bing</div>

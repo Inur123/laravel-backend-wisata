@@ -55,7 +55,7 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>No</th>
                                             <th>Name</th>
 
                                             <th>Create At</th>
@@ -70,23 +70,28 @@
                                                 <td>{{ $category->name }}
                                                 </td>
 
-                                                <td>{{ $category->created_at }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($category->created_at)->translatedFormat('l, d F Y') }}
+                                                </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('categories.edit', $category->id) }}'
-                                                            class="btn btn-sm btn-info btn-icon">
-                                                            <i class="fas fa-edit"></i>
-                                                            Edit
+                                                        <a href="{{ route('categories.edit', $category->id) }}"
+                                                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                            title="Edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a id="delete-btn-{{ $category->id }}"
+                                                            class="btn btn-danger btn-action" data-toggle="tooltip"
+                                                            title="Delete"
+                                                            data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
+                                                            data-confirm-yes="document.getElementById('delete-form-{{ $category->id }}').submit();">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
 
-                                                        <form action="{{ route('categories.destroy', $category->id) }}"
-                                                            method="POST" class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </button>
+                                                        <form id="delete-form-{{ $category->id }}"
+                                                            action="{{ route('categories.destroy', $category->id) }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
                                                         </form>
                                                     </div>
                                                 </td>

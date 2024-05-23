@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,9 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
     public function index(Request $request)
     {
-
         $totalAdmins = DB::table('users')->where('role', 'admin')->count();
         $totalStaff = DB::table('users')->where('role', 'staff')->count();
         $userTotal = DB::table('users')->where('role', 'user')->count();

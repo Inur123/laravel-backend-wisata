@@ -1,3 +1,3 @@
   <div class="simple-footer">
-      Copyright &copy; Stisla 2018
+      Copyright &copy; <?php echo date('Y'); ?> <div class="bullet"></div> Design By <a href="">ZAINUR</a>
   </div>

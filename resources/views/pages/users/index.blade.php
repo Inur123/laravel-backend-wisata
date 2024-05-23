@@ -29,7 +29,9 @@
                 </div>
                 <h2 class="section-title">Users</h2>
                 <p class="section-lead">
-                    User {{ $userTotal }} Admin {{ $totalAdmins }} Staff {{ $totalStaff }}
+                    User <span style="color: red;">{{ $userTotal }}</span> Admin <span
+                        style="color: red;">{{ $totalAdmins }}</span> Staff
+                    <span style="color: red;"> {{ $totalStaff }}</span>
                 </p>
 
 
@@ -37,7 +39,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Posts</h4>
+                                <h4>All Users</h4>
                             </div>
                             <div class="card-body">
 
@@ -83,23 +85,28 @@
                                                 <td>
                                                     {{ $user->role }}
                                                 </td>
-                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($user->created_at)->translatedFormat('l, d F Y') }}
+                                                </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('users.edit', $user->id) }}'
-                                                            class="btn btn-sm btn-info btn-icon">
-                                                            <i class="fas fa-edit"></i>
-                                                            Edit
+                                                        <a href="{{ route('users.edit', $user->id) }}"
+                                                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                            title="Edit">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a id="delete-btn-{{ $user->id }}"
+                                                            class="btn btn-danger btn-action" data-toggle="tooltip"
+                                                            title="Delete"
+                                                            data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
+                                                            data-confirm-yes="document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
 
-                                                        <form action="{{ route('users.destroy', $user->id) }}"
-                                                            method="POST" class="ml-2">
-                                                            <input type="hidden" name="_method" value="DELETE" />
-                                                            <input type="hidden" name="_token"
-                                                                value="{{ csrf_token() }}" />
-                                                            <button class="btn btn-sm btn-danger btn-icon confirm-delete">
-                                                                <i class="fas fa-times"></i> Delete
-                                                            </button>
+                                                        <form id="delete-form-{{ $user->id }}"
+                                                            action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                            style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
                                                         </form>
                                                     </div>
                                                 </td>
