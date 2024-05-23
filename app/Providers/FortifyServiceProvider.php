@@ -22,7 +22,7 @@ class FortifyServiceProvider extends ServiceProvider
     {
         //
     }
-
+    public const HOME = '/home';
     /**
      * Bootstrap any application services.
      */

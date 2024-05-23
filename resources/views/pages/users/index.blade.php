@@ -17,8 +17,8 @@
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
-                    <div class="breadcrumb-item">All Users</div>
+                    <div class="breadcrumb-item"><a href="#">Users </a></div>
+                    <div class="breadcrumb-item">All Users </div>
                 </div>
             </div>
             <div class="section-body">
@@ -29,7 +29,7 @@
                 </div>
                 <h2 class="section-title">Users</h2>
                 <p class="section-lead">
-                    You can manage all Users, such as editing, deleting and more.
+                    User {{ $userTotal }} Admin {{ $totalAdmins }} Staff {{ $totalStaff }}
                 </p>
 
 
@@ -57,7 +57,7 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>No</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -65,8 +65,12 @@
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
                                         @foreach ($users as $user)
                                             <tr>
+                                                <td>{{ $counter++ }}</td>
 
                                                 <td>{{ $user->name }}
                                                 </td>

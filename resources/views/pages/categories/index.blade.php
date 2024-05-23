@@ -61,9 +61,12 @@
                                             <th>Create At</th>
                                             <th>Action</th>
                                         </tr>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
                                         @foreach ($categories as $category)
                                             <tr>
-
+                                                <td>{{ $counter++ }}</td>
                                                 <td>{{ $category->name }}
                                                 </td>
 

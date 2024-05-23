@@ -11,12 +11,15 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+        $totalAdmins = DB::table('users')->where('role', 'admin')->count();
+        $totalStaff = DB::table('users')->where('role', 'staff')->count();
+        $userTotal = DB::table('users')->where('role', 'user')->count();
         $users = DB::table('users')->when($request->keyword, function ($query) use ($request) {
             $query->where('name', 'like', "%{$request->keyword}%")
                 ->orWhere('email', 'like', "%{$request->keyword}%")
                 ->orWhere('phone', 'like', "%{$request->keyword}%");
         })->orderBy('id', 'desc')->paginate(10);
-        return view('pages.users.index', compact('users'));
+        return view('pages.users.index', compact('users', 'totalAdmins', 'totalStaff', 'userTotal'));
     }
 
     //create

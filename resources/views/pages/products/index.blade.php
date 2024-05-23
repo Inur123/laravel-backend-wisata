@@ -56,7 +56,7 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
+                                            <th>No</th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Price</th>
@@ -64,9 +64,12 @@
                                             <th>Create At</th>
                                             <th>Action</th>
                                         </tr>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
                                         @foreach ($products as $product)
                                             <tr>
-
+                                                <td>{{ $counter++ }}</td>
                                                 <td>{{ $product->name }}
                                                 </td>
                                                 <td>

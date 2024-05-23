@@ -9,7 +9,6 @@
         <ul class="sidebar-menu">
             <li class="nav-item {{ Request::routeIs('home') ? 'active' : '' }} ">
                 <a href="{{ route('home') }}" class="nav-link"><i class="fas fa-tachometer"></i><span>Dashboard</span></a>
-
             </li>
 
             <li class="nav-item {{ Request::routeIs('users.index') ? 'active' : '' }} ">
