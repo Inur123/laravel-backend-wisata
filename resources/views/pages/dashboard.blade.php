@@ -125,52 +125,21 @@
                             <h4>Recent Activities</h4>
                         </div>
                         <div class="card-body">
-                            <ul class="list-unstyled list-unstyled-border">
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="text-primary float-right">Now</div>
-                                        <div class="media-title">Farhan A Mujib</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-2.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">12m</div>
-                                        <div class="media-title">Ujang Maman</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-3.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">17m</div>
-                                        <div class="media-title">Rizal Fakhri</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img class="rounded-circle mr-3" width="50"
-                                        src="{{ asset('img/avatar/avatar-4.png') }}" alt="avatar">
-                                    <div class="media-body">
-                                        <div class="float-right">21m</div>
-                                        <div class="media-title">Alfa Zulkarnain</div>
-                                        <span class="text-small text-muted">Cras sit amet nibh libero, in gravida nulla.
-                                            Nulla vel metus scelerisque ante sollicitudin.</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="pt-1 pb-1 text-center">
-                                <a href="#" class="btn btn-primary btn-lg btn-round">
-                                    View All
-                                </a>
+                            <div style="max-height: 600px; overflow-y: auto;">
+                                <ul class="list-unstyled list-unstyled-border ">
+                                    @foreach ($users as $user)
+                                        <li class="media">
+                                            <img class="rounded-circle mr-3" width="50"
+                                                src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
+                                            <div class="media-body">
+                                                <div class="text-primary float-right">
+                                                    {{ $user->created_at->diffForHumans() }}</div>
+                                                <div class="media-title">{{ $user->name }}</div>
+                                                <span class="text-small text-muted">{{ $user->email }}</span>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -685,4 +654,5 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
+    <script></script>
 @endpush

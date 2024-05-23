@@ -11,6 +11,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+
         $totalAdmins = DB::table('users')->where('role', 'admin')->count();
         $totalStaff = DB::table('users')->where('role', 'staff')->count();
         $userTotal = DB::table('users')->where('role', 'user')->count();
